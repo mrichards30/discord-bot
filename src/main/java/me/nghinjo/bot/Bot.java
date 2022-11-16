@@ -1,14 +1,18 @@
 package me.nghinjo.bot;
 
+import me.nghinjo.bot.commands.MessageListeners;
+import me.nghinjo.bot.commands.RandomCommands;
+import me.nghinjo.bot.framework.BotEventsRegistrar;
+import me.nghinjo.bot.framework.BotEventListeners;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.util.Collections;
 
-public class Bot extends ListenerAdapter {
+public class Bot {
+
+    private static BotEventsRegistrar registrar;
 
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -17,19 +21,20 @@ public class Bot extends ListenerAdapter {
         }
 
         JDA jda = JDABuilder.createLight(args[0], Collections.emptyList())
-                .addEventListeners(new Bot())
+                .addEventListeners(new BotEventListeners())
                 .setActivity(Activity.playing("genshin impact 2"))
                 .build();
 
-        jda.upsertCommand("test", "oh man this is gonna test so hard").queue();
+        registrar = BotEventsRegistrar.of(jda)
+                .registerCommand("test", RandomCommands::test, "Say hi")
+                .registerCommand("test2", RandomCommands::hi)
+                .chainMessageListener(MessageListeners::affirmMattsMusicTaste)
+                .chainMessageListener(MessageListeners::log);
+
     }
 
-    @Override
-    public void onSlashCommandInteraction(SlashCommandInteractionEvent command) {
-        //TODO chain of responsibility?
-        if (command.getName().equals("test")) {
-            command.reply("please turn me off i hate being alive").queue();
-        }
+    public static BotEventsRegistrar getRegistrar() {
+        return registrar;
     }
 
 }
