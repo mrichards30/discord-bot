@@ -1,10 +1,10 @@
 package me.mrichards.bot;
 
-import me.mrichards.bot.messagelisteners.EasyStalking;
+import me.mrichards.bot.messagelisteners.MessageLogger;
 import me.mrichards.bot.commands.RandomCommands;
 import me.mrichards.bot.framework.BotEventsRegistrar;
 import me.mrichards.bot.framework.BotEventListeners;
-import me.mrichards.bot.messagelisteners.MattsEgo;
+import me.mrichards.bot.messagelisteners.MusicTasteJudger;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -28,8 +28,8 @@ public class Bot {
         registrar = BotEventsRegistrar.of(jda)
                 .registerCommand("test", RandomCommands::test, "Say hi")
                 .registerCommand("test2", RandomCommands::hi)
-                .chainMessageListener(MattsEgo::affirmMattsMusicTaste)
-                .chainMessageListener(EasyStalking::log);
+                .chainMessageListener(MusicTasteJudger::handle)
+                .chainMessageListener(MessageLogger::handle);
 
     }
 
