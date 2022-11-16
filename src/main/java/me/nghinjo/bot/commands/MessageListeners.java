@@ -15,4 +15,5 @@ public class MessageListeners {
     public static void log(MessageReceivedEvent event) {
         System.out.println(event.getAuthor().getName() + " said " + event.getMessage().getContentRaw());
     }
+
 }

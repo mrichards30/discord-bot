@@ -7,6 +7,7 @@ import me.nghinjo.bot.framework.BotEventListeners;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 
 import java.util.Collections;
 
@@ -20,7 +21,7 @@ public class Bot {
             System.exit(1);
         }
 
-        JDA jda = JDABuilder.createLight(args[0], Collections.emptyList())
+        JDA jda = JDABuilder.createLight(args[0], GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.MESSAGE_CONTENT)
                 .addEventListeners(new BotEventListeners())
                 .setActivity(Activity.playing("genshin impact 2"))
                 .build();

@@ -17,7 +17,6 @@ public class BotEventListeners extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
-        System.out.println("debugging is ufn");
         Bot.getRegistrar().getMessageReceivedPipeline().accept(event);
     }
 
