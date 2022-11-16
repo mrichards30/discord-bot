@@ -1,6 +1,6 @@
-package me.nghinjo.bot.framework;
+package me.mrichards.bot.framework;
 
-import me.nghinjo.bot.Bot;
+import me.mrichards.bot.Bot;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;

@@ -1,8 +1,8 @@
-package me.nghinjo.bot.commands;
+package me.mrichards.bot.messagelisteners;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-public class MessageListeners {
+public class MattsEgo {
 
     public static void affirmMattsMusicTaste(MessageReceivedEvent event) {
         if (event.getAuthor().getName().equals("Matt") &&
@@ -10,10 +10,6 @@ public class MessageListeners {
                 event.getMessage().getEmbeds().stream().anyMatch(embed -> embed.getUrl() != null)) {
             event.getMessage().reply("matt you have such good taste its insane").queue();
         }
-    }
-
-    public static void log(MessageReceivedEvent event) {
-        System.out.println(event.getAuthor().getName() + " said " + event.getMessage().getContentRaw());
     }
 
 }

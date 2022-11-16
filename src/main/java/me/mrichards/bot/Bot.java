@@ -1,15 +1,14 @@
-package me.nghinjo.bot;
+package me.mrichards.bot;
 
-import me.nghinjo.bot.commands.MessageListeners;
-import me.nghinjo.bot.commands.RandomCommands;
-import me.nghinjo.bot.framework.BotEventsRegistrar;
-import me.nghinjo.bot.framework.BotEventListeners;
+import me.mrichards.bot.messagelisteners.EasyStalking;
+import me.mrichards.bot.commands.RandomCommands;
+import me.mrichards.bot.framework.BotEventsRegistrar;
+import me.mrichards.bot.framework.BotEventListeners;
+import me.mrichards.bot.messagelisteners.MattsEgo;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-
-import java.util.Collections;
 
 public class Bot {
 
@@ -29,8 +28,8 @@ public class Bot {
         registrar = BotEventsRegistrar.of(jda)
                 .registerCommand("test", RandomCommands::test, "Say hi")
                 .registerCommand("test2", RandomCommands::hi)
-                .chainMessageListener(MessageListeners::affirmMattsMusicTaste)
-                .chainMessageListener(MessageListeners::log);
+                .chainMessageListener(MattsEgo::affirmMattsMusicTaste)
+                .chainMessageListener(EasyStalking::log);
 
     }
 

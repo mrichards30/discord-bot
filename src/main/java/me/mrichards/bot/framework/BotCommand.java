@@ -1,4 +1,4 @@
-package me.nghinjo.bot.framework;
+package me.mrichards.bot.framework;
 
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 
